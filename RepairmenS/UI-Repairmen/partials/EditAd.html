@@ -1,0 +1,46 @@
+﻿<widget-error-messages></widget-error-messages>
+<widget-success-messages></widget-success-messages>
+
+<div class="col-xs-12 col-sm-2 ">
+    <img src="../img/rm_logo.png" style="max-height:100px" class="img-responsive" />
+</div>
+<div ng-init="initialiseSingleAd()" class="col-xs-12 col-sm-10">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 translate>EDIT_AD.COORDS</h3>
+            <div id="googleMap"></div>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <div class="row">
+                <h4 translate>EDIT_AD.IMG_OLD</h4>
+                <img id="imgold" class="img-responsive" src="{{post.ImagePath}}" alt="img">
+             </div>
+            <div class="clear-both"></div>
+             <div class="row">
+                 <form name="deleteImg" role="form" ng-submit="deleteImage()">
+                     <input type="submit" value="{{'CONFIRM_DIALOG.DELETE_OK'|translate}}" class="btn btn-primary" /><br /><br />
+                 </form>
+             </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div ng-controller="Ctrl">
+                <div><h4 translate>EDIT_AD.IMG_SELECT</h4> <input type="file" id="fileInput" /></div>
+                <div class="cropArea">
+                    <img-crop image="myImage" result-image="myCroppedImage" area-type="rectangle" area-coords="myAreaCoords" result-image-size="150"></img-crop>
+                </div>
+                <div translate>EDIT_AD.IMG_NEW</div>
+                <div class="cropped"><img id="croppedpic" ng-src="{{myCroppedImage}}" /></div>
+            </div>
+            <div class="clear-both"></div>
+            <div>
+                <form name="editForm" role="form" ng-submit="submitData()">
+                    <input type="submit" value="{{'EDIT_AD.SUBMIT'|translate}}" class="btn btn-primary" style="width:150px" /><br /><br />
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>

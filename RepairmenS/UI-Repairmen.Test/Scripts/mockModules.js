@@ -1,0 +1,12 @@
+'use strict';
+//var ngRoute = angular.module('ngRoute', []);
+var LocalStorageModule = angular.module('LocalStorageModule', []);
+var repairmenFilters = angular.module('repairmenFilters', []);
+var uiBootstrap = angular.module('ui.bootstrap', []);
+var xeditable = angular.module('xeditable', []);
+var ngImgCrop = angular.module('ngImgCrop', []);
+var translateP = angular.module('pascalprecht.translate', []);
+var ngCookies = angular.module('ngCookies', []);
+var ngDialog = angular.module('ngDialog', []);
+var googleplus = angular.module('googleplus', []);
+var ngDialogProvider = angular.module("ngDialogProvider", []);

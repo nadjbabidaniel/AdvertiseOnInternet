@@ -1,0 +1,131 @@
+﻿<widget-error-messages></widget-error-messages>
+<widget-success-messages></widget-success-messages>
+<div id="adminTabs" class="row administrationPanel" ng-init="initialiseAdmin()">
+    <div class="col-xs-12">
+        <h1 translate>ADMIN_PAGE.ADMIN_PANEL</h1> <img src="../img/settings.png" />
+    </div>
+    <div class="adminTabs col-xs-12">
+        <ul ng-init="tab = 1" class="col-md-12 col-xs-12">
+            <li ng-class="{active:tab===1}" class="col-xs-12 col-sm-4">
+                <a href ng-click="tab = 1" >{{'ADMIN_PAGE.CATEGORIES_APPROVAL' | translate}}</a>
+            </li>
+            <li ng-class="{active:tab===2}" class="col-xs-12 col-sm-4">
+                <a href ng-click="tab = 2" >{{'ADMIN_PAGE.COMMENTS_APPROVAL'| translate}}</a>
+            </li>
+            <li ng-class="{active:tab===3}" class="col-xs-12 col-sm-4">
+                <a href ng-click="tab = 3" >{{'ADMIN_PAGE.ADS_APPROVAL'|translate}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tabDetail col-xs-12">
+        <div class="border" ng-show="tab === 1">
+            <form role="form" ng-submit="addCategory(categories)" no-validate class="row form-inline">
+                <fieldset>
+                    <div class="form-group col-md-12 col-xs-12 approve-item">
+                        <div ng-repeat="category in categories">
+                            <div id="categories-approval">
+                                <label for="focused-input" translate>ADMIN_PAGE.CATEGORY</label>
+                                <div class="clear-both"></div>
+                                <input type="text" class="form-control" id="category" ng-model="category.CatName" value="{{category.CatName}}" required>
+                                <div class="clear-both"></div>
+                                <label for="focused-input" translate>ADMIN_PAGE.APPROVE</label>
+                                <input id="{{ 'aprove-'+$index }}" type="checkbox" ng-model="category.Approved" value="{{category.Approved}}" ng-click="doCheck($event, $index, category)">
+                                <label for="focused-input" translate>ADMIN_PAGE.DELETE</label>
+                                <input id="{{ 'delete-'+$index }}" type="checkbox" ng-model="category.Delete" value="{{category.Delete}}" ng-click="doCheck($event, $index, category)">
+                                <input type="hidden" ng-model="category.Id" value="{{category.Id}}" />
+                            </div>
+                            <hr style="color:blueviolet" />
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                    <div class="form-group" ng-show="categories.length > 0" id="btn-submit">
+                        <input type="submit" value="{{'ADMIN_PAGE.SUBMIT'|translate}}" class="btn btn-primary" ng-disabled="registerForm.$invalid" />
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="border" ng-show="tab === 2">
+            <form name="commentForm" role="form" ng-submit="postComments(comments)" no-validate class="row form-inline">
+                <fieldset>
+                    <div class="form-group col-md-12 col-xs-12 approve-item">
+                        <div ng-repeat="comment in comments">
+                            <div>
+                                <div class="col-md-12 col-xs-12">
+                                    <label for="focused-input" translate>ADMIN_PAGE.COMMENT</label>
+                                    <div class="clear-both"></div>
+                                    <textarea id="comment{{$index}}" ng-model="comment.Text" value="{{comment.Text}}" required></textarea>
+                                </div>
+                                <div class="col-md-12 col-xs-12" id="ch-box">
+                                    <input id="{{ 'aprove-'+$index }}" type="checkbox" ng-model="comment.Approved" ng-click="doCheck($event, $index, comment)">
+                                    <label for="focused-input" translate>ADMIN_PAGE.APPROVE</label>
+                                    <input id="{{ 'delete-'+$index }}" type="checkbox" ng-model="comment.Delete" ng-click="doCheck($event, $index, comment)"> 
+                                    <label for="focused-input" translate>ADMIN_PAGE.DELETE</label>
+                                    <div class="clear-both"></div>
+                                    <input type="hidden" ng-model="comment.Id" value="{{comment.Id}}" />
+                                </div>
+                                <input type="checkbox" ng-model="showDescription[$index]" ng-click="getDescriptions(comment.Id, $index)" />{{'ADMIN_PAGE.SHOW_DESCRIPTION'|translate}}
+                                <div ng-show="showDescription[$index]">
+                                    <div ng-repeat="desc in description[$index]">
+                                        <div class="clear-both"></div>
+                                        {{desc.Description}}
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                    <div class="form-group" ng-show="comments.length > 0" id="btn-submit">
+                        <input type="submit" value="{{'ADMIN_PAGE.SUBMIT'|translate}}" class="btn btn-primary" ng-disabled="commentForm.$invalid" />
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="border col-xs-12" ng-show="tab === 3" id="ads-approval">
+            <form name="adsApprovalForm" role="form" class="row form-inline" ng-submit="postAds(ads)" novalidate>
+                <fieldset>
+                    <div class="form-group col-md-12 col-xs-12 approve-item">
+                        <div ng-repeat="ad in ads">
+                            <div>
+                                <div class="col-md-4 col-xs-12">
+                                    <label for="focused-input" translate>ADMIN_PAGE.AD_NAME</label>
+                                    <div class="clear-both"></div>
+                                    <input type="text" class="form-control" id="name{{$index}}" ng-model="ad.Name" value="{{ad.Name}}" required>
+                                    <div class="clear-both"></div>
+                                </div>
+                                <div class="col-md-8 col-xs-12">
+                                    <label for="focused-input" translate>ADMIN_PAGE.DESCRIPTION</label>
+                                    <div class="clear-both"></div>
+                                    <textarea id="description{{$index}}" ng-model="ad.Description"></textarea>
+                                    <div class="clear-both"></div>
+                                </div>
+                                <div class="col-md-12 col-xs-12" id="ch-box">
+
+                                    <input id="{{ 'delete-'+$index }}" type="checkbox" ng-model="ad.Delete" ng-click="doCheck($event, $index, ad)">
+                                    <label for="focused-input" translate>ADMIN_PAGE.DELETE</label>
+                                    <input id="{{ 'aprove-'+$index }}" type="checkbox" ng-model="ad.Approved" ng-click="doCheck($event, $index, ad)">
+                                    <label for="focused-input" translate>ADMIN_PAGE.APPROVE</label>
+
+                                </div>
+                                <dvi class="col-md-12 col-xs-12">
+                                    <input type="checkbox" ng-model="showAdDescriptions[$index]" ng-click="getAdDescriptions(ad.Id, $index)">{{'ADMIN_PAGE.SHOW_DESCRIPTION'|translate}}
+                                    <div ng-show="showAdDescriptions[$index]">
+                                        <div ng-repeat="desc in descriptionsAd[$index]">
+                                            <div class="clear-both"></div>
+                                            <div>{{desc.Description}}</div>
+                                        </div>
+                                    </div>
+                                </dvi>
+                            </div>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="clear-both"></div>
+                    <div class="form-group" ng-show="ads.length > 0" id="btn-submit">
+                        <input type="submit" value="{{'ADMIN_PAGE.SUBMIT'|translate}}" class="btn btn-primary" ng-disabled="adsApprovalForm.$invalid" />
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

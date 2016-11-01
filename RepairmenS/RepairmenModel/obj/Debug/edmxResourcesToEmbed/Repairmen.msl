@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="repairmenModelStoreContainer" CdmEntityContainer="repairmenEntities">
+    <EntitySetMapping Name="Ads">
+      <EntityTypeMapping TypeName="repairmenModel.Ad">
+        <MappingFragment StoreEntitySet="Ads">
+          <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+          <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+          <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="InappCounter" ColumnName="InappCounter" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="AvgRate" ColumnName="AvgRate" />
+          <ScalarProperty Name="VoteCounter" ColumnName="VoteCounter" />
+          <ScalarProperty Name="CommentCounter" ColumnName="CommentCounter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="repairmenModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="CatName" ColumnName="CatName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="repairmenModel.City">
+        <MappingFragment StoreEntitySet="Cities">
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="repairmenModel.Comment">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Counter" ColumnName="Counter" />
+          <ScalarProperty Name="NegativeVote" ColumnName="NegativeVote" />
+          <ScalarProperty Name="PositiveVote" ColumnName="PositiveVote" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AdId" ColumnName="AdId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InappropriateComments">
+      <EntityTypeMapping TypeName="repairmenModel.InappropriateComment">
+        <MappingFragment StoreEntitySet="InappropriateComments">
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RandomS">
+      <EntityTypeMapping TypeName="repairmenModel.Random">
+        <MappingFragment StoreEntitySet="RandomS">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="RandomString" ColumnName="RandomString" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ratings">
+      <EntityTypeMapping TypeName="repairmenModel.Rating">
+        <MappingFragment StoreEntitySet="Ratings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AdId" ColumnName="AdId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="repairmenModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="repairmenModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="repairmenModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="PasswordChange" ColumnName="PasswordChange" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="NotifySMS" ColumnName="NotifySMS" />
+          <ScalarProperty Name="NotifyEmail" ColumnName="NotifyEmail" />
+          <ScalarProperty Name="Locked" ColumnName="Locked" />
+          <ScalarProperty Name="SignupDate" ColumnName="SignupDate" />
+          <ScalarProperty Name="LoginFlag" ColumnName="LoginFlag" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InappropriateAds">
+      <EntityTypeMapping TypeName="repairmenModel.InappropriateAd">
+        <MappingFragment StoreEntitySet="InappropriateAds">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AdId" ColumnName="AdId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommentVotes">
+      <EntityTypeMapping TypeName="repairmenModel.CommentVote">
+        <MappingFragment StoreEntitySet="CommentVote">
+          <ScalarProperty Name="Vote" ColumnName="Vote" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

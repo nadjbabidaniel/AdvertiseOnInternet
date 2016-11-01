@@ -1,0 +1,28 @@
+﻿<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand home-width" href="/#/ads" translate>HEADER.HOME</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse" ng-controller="NavCtrl">
+            <ul class="nav navbar-nav">
+                <li><a href="/#/signin" ng-show="!userLoggedIn" translate>HEADER.LOGIN</a></li>
+                <li><a href="/#/new-ad" ng-show="userLoggedIn" translate>HEADER.CREATE_AD</a></li>
+                <li><a href="/#/new-category" ng-show="userLoggedIn" translate>HEADER.ADD_CATEGORY</a></li>
+                <li><a href="/#/admin" ng-show="userIsAdmin" translate>HEADER.ADMINISTRATION</a></li>
+            </ul>
+            <ul ng-controller="l10nController" class="nav navbar-nav navbar-right">
+                <li><a class="pointer" ng-click="changeLanguage('en')" translate><img class="langImg" src="../img/United-Kingdom.png" title="English" alt="English"></a></li>
+                <li><a class="pointer" ng-click="changeLanguage('sr')" translate><img class="langImg" src="../img/Serbia.png" title="Srpski" alt="Srpski"></a></li>
+                <li><a href="/#/signup" ng-show="!userLoggedIn" translate>HEADER.SIGN_UP</a></li>
+                <li><a href="/#/user-panel" ng-show="userLoggedIn">{{userPage}}</a></li>
+                <li><a href="#" data-ng-click="logOut()" ng-show="userLoggedIn" translate>HEADER.LOG_OUT</a></li>
+            </ul>
+        </div>
+    </div>  
+</div>
+

@@ -1,0 +1,12 @@
+C:\Users\DanielN\Downloads\RepairmenS\RepairmenModel\bin\Debug\RepairmenModel.dll.config
+C:\Users\DanielN\Downloads\RepairmenS\RepairmenModel\bin\Debug\RepairmenModel.dll
+C:\Users\DanielN\Downloads\RepairmenS\RepairmenModel\bin\Debug\RepairmenModel.pdb
+C:\Users\DanielN\Downloads\RepairmenS\RepairmenModel\bin\Debug\EntityFramework.dll
+C:\Users\DanielN\Downloads\RepairmenS\RepairmenModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\DanielN\Downloads\RepairmenS\RepairmenModel\bin\Debug\Google.dll
+C:\Users\DanielN\Downloads\RepairmenS\RepairmenModel\bin\Debug\EntityFramework.xml
+C:\Users\DanielN\Downloads\RepairmenS\RepairmenModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\DanielN\Downloads\RepairmenS\RepairmenModel\bin\Debug\Google.xml
+C:\Users\DanielN\Downloads\RepairmenS\RepairmenModel\obj\Debug\RepairmenModel.dll
+C:\Users\DanielN\Downloads\RepairmenS\RepairmenModel\obj\Debug\RepairmenModel.pdb
+C:\Users\DanielN\Downloads\RepairmenS\RepairmenModel\obj\Debug\RepairmenModel.csprojResolveAssemblyReference.cache

@@ -1,0 +1,15 @@
+<div class="ngdialog-message">
+    <form name="emilForm">
+        <h3 translate>EMAIL_DIALOG.SEND_EMAIL</h3>
+        <label for="mailBody" translate>EMAIL_DIALOG.MESSAGE</label>
+        <textarea name="Mail" ng-model="confirmValue" class="form-control" required />
+        <div class="error-container" ng-show="emilForm.Mail.$dirty && registerForm.Mail.$invalid">
+            <p class="error" ng-show="registerForm.Mail.$error.required" translate>EMAIL_DIALOG.MESSAGE_ER_REQ</p>
+        </div>
+    </form>
+</div>
+<div class="clear-both"></div>
+<div class="ngdialog-buttons">
+    <input type="submit" value="{{'EMAIL_DIALOG.SEND'|translate}}" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(confirmValue)" ng-disabled="emilForm.$invalid" />
+    <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('button')" translate>EMAIL_DIALOG.CANCEL</button>
+</div>

@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Repairmen</title>
+    <link href="/img/rmen.png" rel="shortcut icon" type="image/x-icon" />
+    <script type="text/javascript" src="js/lib/jquery.js"></script>
+    <script type="text/javascript" src="js/lib/angular.js"></script>
+    <script type="text/javascript" src="js/lib/angular-route.js"></script>
+    <script src="js/lib/angular-cookies.js"></script>
+    <script type="text/javascript" src="js/lib/angular-local-storage.js"></script>
+    <script type="text/javascript" src="l10n/angular-translate/angular-translate.js"></script>
+    <script type="text/javascript" src="l10n/translationTables/translations.js"></script>
+    <script src="l10n/angular-translate/Storage/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
+    <script src="l10n/angular-translate/Storage/angular-translate-storage-local/angular-translate-storage-local.min.js"></script>
+    <script type="text/javascript" src="js/lib/sha512.js"></script>
+    <script type="text/javascript" src="js/lib/xeditable.js"></script>
+    <script type="text/javascript" src="js/lib/xeditable.min.js"></script>
+    <script type="text/javascript" src="js/lib/ngDialog.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAiTweLCBRGmdvJfmQoqCbnakvSSmSbvVk&sensor=false"></script>
+    <!--<script type="text/javascript" src="js/controllers.js"></script>     -->
+    <script src="js/lib/angular-busy.js"></script>
+    <script src="js/lib/00-directive.js"></script>
+    <script src="js/lib/02-facebook.js"></script>
+    <script src="js/lib/03-twitter.js"></script>
+    <script src="js/lib/04-google-plus.js"></script>
+    <script type="text/javascript" src="js/lib/angular-google-plus.min.js"></script>
+    <script type="text/javascript" src="js/controllers/admin.js"></script>
+    <script type="text/javascript" src="js/controllers/security.js"></script>
+    <script type="text/javascript" src="js/controllers/ads.js"></script>
+    <script type="text/javascript" src="js/controllers/categories.js"></script>
+    <script type="text/javascript" src="js/controllers/ratings.js"></script>
+    <script type="text/javascript" src="js/controllers/userPanel.js"></script>
+    <script type="text/javascript" src="js/controllers/l10n.js"></script>
+    <script type="text/javascript" src="js/controllers/paypal.js"></script>
+    <script type="text/javascript" src="js/directives.js"></script>
+    <script type="text/javascript" src="js/filters.js"></script>
+    <script type="text/javascript" src="js/services.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/lib/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="js/lib/ng-img-crop.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/xeditable.css">
+    <link rel="stylesheet" type="text/css" href="css/ngDialog.css">
+    <link rel="stylesheet" type="text/css" href="css/ngDialog-theme-default.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="css/angular-busy.css" rel="stylesheet" />
+    <link href="css/angular-social.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body ng-app="app" ng-controller="MainController">
+    <div id="fb-root"></div>
+    <div id="wrapper">
+        <header-navigation></header-navigation>
+        <div class="container-fluid margTop">
+            <div ng-view>
+            </div>
+        </div>
+        <footer-navigation></footer-navigation>
+    </div>
+</body>
+</html>

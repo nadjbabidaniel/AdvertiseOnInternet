@@ -1,0 +1,12 @@
+﻿<div class="ngdialog-message">
+    <form name="emilForm">
+        <h4 translate>CONFIRM_DIALOG.DELETE_AD_TITLE</h4>
+        <hr/>
+        <label for="mailBody" translate>CONFIRM_DIALOG.DELETE_AD_MESSAGE</label>
+    </form>
+</div>
+<div class="clear-both"></div>
+<div class="ngdialog-buttons">
+    <input type="submit" value="{{'CONFIRM_DIALOG.DELETE_OK'|translate}}" class="ngdialog-button ngdialog-button-primary" ng-click="confirm(confirmValue)" ng-disabled="emilForm.$invalid" />
+    <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('button')" translate>EMAIL_DIALOG.CANCEL</button>
+</div>

@@ -1,0 +1,24 @@
+﻿<widget-error-messages></widget-error-messages>
+<widget-success-messages></widget-success-messages>
+<div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-2">
+        <h1 translate>WIDGETS.ADD_CATEGORY</h1>
+        <form role="form" ng-submit="addCategory(category)"  no-validate>
+            <fieldset>
+                <div class="form-group">
+                    <label for="focused-input" translate>WIDGETS.CATEGORY</label>
+                    <input type="text" class="form-control" id="category" placeholder="{{'WIDGETS.ADD_CATEGORY_PH'|translate}}" ng-model="category.catName" required>
+                    <div class="error-container" ng-show="form.Category.$dirty && form.Category.$invalid">
+                        <p class="error" ng-show="form.Category.$error.required" translate>WIDGETS.ADD_CATEGORY_ER_REQ</p>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right" ng-init="initializeCatTranslate()" translate>WIDGETS.SUBMIT</button>
+            </fieldset>
+        </form>
+        <div class="clear-both"></div>
+        <div>
+            <h5 translate>WIDGETS.CATEGORY_EXPLAIN</h5>
+        </div>
+    </div>
+</div>
+

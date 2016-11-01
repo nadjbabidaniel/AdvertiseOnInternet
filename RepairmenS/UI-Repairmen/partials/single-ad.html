@@ -1,0 +1,102 @@
+﻿<widget-error-messages></widget-error-messages>
+<widget-success-messages></widget-success-messages>
+
+<div class="col-xs-12 col-sm-2 "  >
+    <img src="../img/rm_logo.png" style="max-height:100px" class="img-responsive" />  
+</div>
+<div class="cgb" cg-busy="myPromise"></div>
+<div ng-init="initialiseSingleAd()" class="col-xs-12 col-sm-10">
+    <div class="thumbnail">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+
+                    <img class="img-responsive" src="{{post.ImagePath}}" alt="img">
+
+                <input src="../img/email.png" alt="email" ng-click="clickToOpen()" height="35" type="image" style="width:30px; height:30px; margin:5px" title="Contact Repairmen">
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <h4>
+                    {{post.Name}}
+                </h4>
+                <div><strong translate>SINGLE_AD.CATEGORY</strong>: {{post.CategoryName}}</div>
+                <div><strong translate>SINGLE_AD.CITY</strong>: {{post.CityName}}</div>
+                <div><strong translate>SINGLE_AD.ADDRESS</strong>: {{post.Location}}</div>
+                <div><strong translate>SINGLE_AD.PHONE</strong>: {{post.PhoneNumber}}</div>
+                <div><strong translate>SINGLE_AD.EMAIL</strong>: {{post.Email}}</div>
+                <div><strong translate>SINGLE_AD.WEBSITE</strong>: <a ng-href="{{post.Website}}" target="_blank" ng-if="post.Website"> {{post.Website}}</a></div>
+                <div><strong translate>SINGLE_AD.DESC</strong>: {{post.Description}}</div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <div ng-controller="RatingCtrl">
+                    <h4 translate>SINGLE_AD.RATE</h4>
+                    <rating ng-model="rate" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null" ng-click="addRate(post.Id, rate)"></rating>
+                    <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+                    <!-- pre style="margin:15px 0;">Rate: <b>{{rate}}</b></pre>-->
+                    <div>
+                        <span translate>SINGLE_AD.RATING</span>: <b>{{post.AvgRate}}</b>/5 <span translate>SINGLE_AD.FROM</span> <b>{{post.VoteCounter}}</b> <span translate>SINGLE_AD.USERS</span>
+                    </div>
+                </div>
+                <!-- place for social network sharing-->
+                <div ng-controller="SharingCtrl" >
+                    <ul ng-social-buttons
+                        data-url="data_url"
+                        data-title="current_title"
+                        data-description="current_description"
+                        data-image="'http://htrepairmen.cloudapp.net/img/rm_logo.png'"
+                        showcounts="false">
+                        <li class="ng-social-facebook" style="display:block; padding-top:8px">Facebook</li>
+                        <li class="ng-social-google-plus" style="display:block; padding-top:8px">Google+</li>
+                        <li class="ng-social-twitter" style="display:block; padding-top:8px">Twitter</li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div id="googleMap"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-lg-12 col-md-12">
+            <div>
+                <h4 ng-show="comments.length > 0" translate>SINGLE_AD.COMMENTS</h4>
+                <div ng-repeat="cmt in comments">
+                    <div class="thumbnail">
+                        <p>{{cmt.Username}} {{"SINGLE_AD.WROTE"|translate}}</p>
+                        <p><i>{{cmt.Text}}</i></p>
+                        <div>
+                            {{cmt.PositiveVote}}
+                            <img src="img/like.png" style="width:30px; cursor:pointer" ng-click="addVote(cmt.Id, 'true',[$index])" ng-model="vote" title="Up" />
+                            {{cmt.NegativeVote}}
+                            <img src="img/dislike.png" style="width: 30px; cursor: pointer" ng-click="addVote(cmt.Id, 'false',[$index])" ng-model="vote" title="Down" />
+                        </div>
+                        <input type="checkbox" ng-model="showInnappropriateDescription[$index]" /> {{"SINGLE_AD.INAPPROPRIATE"|translate}}
+                        <div ng-show="showInnappropriateDescription[$index]">
+                            <form name="addInnappropriateCommentForm" id="addInnappropriateCommentForm{{$index}}" role="form" class="form-horizontal" ng-submit="addInnappropriateComment(description[$index], cmt.Id, $index)" no-validate>
+                                <fieldset>
+                                    <div>
+                                        <textarea class="form-control" ng-style="myStyle" name="description" id="description[$index]" placeholder="{{'SINGLE_AD.DESC_PH'|translate}}" ng-model="description[$index]" required></textarea><br />
+                                        <input type="submit" value="{{'SINGLE_AD.INAPPROPRIATE_SUBMIT'|translate}}" class="btn btn-primary" ng-disabled="addInnappropriateCommentForm.$invalid" ng-click="myStyle={border:'blue'}" /> <br />
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="addComment">
+                <form name="addCommentForm" role="form" class="form-horizontal" ng-submit="addCommentForm.$valid && addComment(comment)" no-validate>
+                    <fieldset>
+                        <div>
+                            <label for="comment" translate>SINGLE_AD.COMMENT</label>
+                            <textarea class="form-control" name="text" id="text" placeholder="{{'SINGLE_AD.COMMENT_PH'|translate}}" ng-model="comment.text" required></textarea><br />
+                            <input type="submit" value="{{'SINGLE_AD.COMMENT_SUBMIT'|translate}}" class="btn btn-primary pull-right" ng-disabled="addCommentForm.$invalid" /><br />
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

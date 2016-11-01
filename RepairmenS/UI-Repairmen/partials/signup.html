@@ -1,0 +1,55 @@
+﻿<widget-error-messages></widget-error-messages>
+<widget-success-messages></widget-success-messages>
+<div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-2">
+        <h3 translate>SIGNUP.SIGNUP_FORM</h3>
+        <form name="signup_form" novalidate>
+            <div class=" form-group">
+                <label for="name" translate>SIGNUP.FNAME</label>
+                <input type="text" placeholder="{{'SIGNUP.FNAME_PH'|translate}}" class="form-control" name="FirstName" ng-model="signup.FirstName" ng-minlength=3 ng-maxlength=20 required />
+                <p class="error" ng-show="signup_form.FirstName.$dirty && signup_form.name.$invalid"></p>
+                <p class="error" ng-show="signup_form.FirstName.$error.required" translate>SIGNUP.FNAME_ER_REQ</p>
+                <p class="error" ng-show="signup_form.FirstName.$error.minlength" translate>SIGNUP.FNAME_ER_MIN</p>
+                <p class="error" ng-show="signup_form.FirstName.$error.maxlength" translate>SIGNUP.FNAME_ER_MAX</p>
+            </div>
+            <div class="form-group">
+                <label for="lastname" translate>SIGNUP.LNAME</label>
+                <input type="text" placeholder="{{'SIGNUP.LNAME'|translate}}" class="form-control" name="LastName " ng-model="signup.LastName" />
+                <div class="error" ng-show="signup_form.lastname.$dirty && signup_form.lastname.$invalid"></div>
+            </div>
+            <div class="form-group">
+                <label for="Username" translate>SIGNUP.DISP_NAME</label>
+                <input type="text" placeholder="{{'SIGNUP.DISP_NAME_PH'|translate}}" class="form-control" name="Username" ng-model="signup.Username" required />                    
+            </div>
+            <div class="form-group">
+                <label for="email" translate>SIGNUP.EMAIL</label>
+                <input type="text" class="form-control" name="Email" placeholder="{{'SIGNUP.EMAIL_PH'|translate}}" ng-model="signup.Email" required valid-email ensure-unique="Email">
+                <p class="error" ng-show="signup_form.Email.$error.required" translate>SIGNUP.EMAIL_ER_REQ</p>
+                <p class="error" ng-show="signup_form.Email.$dirty && signup_form.Email.$invalid" translate>SIGNUP.EMAIL_ER_INVALID</p>
+                <p class="error" ng-show="signup_form.Email.$dirty && signup_form.Email.$error.unique" translate>SIGNUP.EMAIL_ER_TAKEN</p>
+            </div>
+            <div class="form-group">
+                <label for="PhoneNumber" translate>SIGNUP.PHONE</label>
+                <input valid-phone type="text" class="form-control" name="Phone" placeholder="{{'SIGNUP.PHONE_PH'|translate}}" ng-model="signup.PhoneNumber" />
+                <div class="error-container" ng-show="signup_form.Phone.$dirty && signup_form.Phone.$invalid">
+                    <p class="error" ng-show="signup_form.Phone.$invalid" translate>SIGNUP.PHONE_ER_INVALID</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" translate>SIGNUP.PASSWORD</label>
+                <input ng-model='Password' type="password" class="form-control" name='Password' placeholder="{{'SIGNUP.PASSWORD_PH'|translate}}" ng-minlength="3" required>
+                <div ng-show="signup_form.Password.$error.required" translate>SIGNUP.PASSWORD_ER_REQ</div>
+            </div>
+            <div class="form-group">
+                <label for="password" translate>SIGNUP.CPASSWORD</label>
+                <input type="password" class="form-control" name='confirm_password' placeholder="{{'SIGNUP.CPASSWORD_PH'|translate}}" ng-model='passwordVerify' ng-minlength="3" required data-password-verify="Password">
+                <div ng-show="signup_form.confirm_password.$error.required" translate>SIGNUP.CPASSWORD_ER_REQ</div>
+                <div ng-show="signup_form.confirm_password.$error.passwordVerify" translate>SIGNUP.CPASSWORD_ER_NEQUAL</div>
+            </div>
+            <div class="form-group" style="display:none" ng-model="signup.RoleId">
+            </div>
+
+            <button type="submit" class="btn btn-primary pull-right" ng-init="initSignUpMsg()" ng-click="addUser(signup)" ng-disabled="signup_form.$invalid" translate>SIGNUP.SUBMIT</button>
+        </form>
+    </div>
+</div>

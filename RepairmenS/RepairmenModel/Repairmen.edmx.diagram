@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="23ec7975243e4470bbc90bb6a6a648ae" Name="Diagram1">
+        <EntityTypeShape EntityType="repairmenModel.Ad" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="repairmenModel.Category" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="repairmenModel.City" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="repairmenModel.Comment" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="repairmenModel.InappropriateComment" Width="1.5" PointX="8.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="repairmenModel.Random" Width="1.5" PointX="5.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="repairmenModel.Rating" Width="1.5" PointX="10.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="repairmenModel.Role" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="repairmenModel.sysdiagram" Width="1.5" PointX="7.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="repairmenModel.User" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="repairmenModel.FK_AdUser" ManuallyRouted="false" />
+        <AssociationConnector Association="repairmenModel.FK_CategoryAd" ManuallyRouted="false" />
+        <AssociationConnector Association="repairmenModel.FK_CityAd" ManuallyRouted="false" />
+        <AssociationConnector Association="repairmenModel.FK_Comments_Ads" ManuallyRouted="false" />
+        <AssociationConnector Association="repairmenModel.FK_Ratings_Ads" ManuallyRouted="false" />
+        <AssociationConnector Association="repairmenModel.FK_Comments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="repairmenModel.FK_InappropriateComments_Comments" ManuallyRouted="false" />
+        <AssociationConnector Association="repairmenModel.FK_InappropriateComments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="repairmenModel.FK_Ratings_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="repairmenModel.FK_UserRole" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="repairmenModel.InappropriateAd" Width="1.5" PointX="0.625" PointY="7.75" />
+        <AssociationConnector Association="repairmenModel.FK_InappropriateAds_Ads" />
+        <AssociationConnector Association="repairmenModel.FK_InappropriateAds_Users" />
+        <EntityTypeShape EntityType="repairmenModel.CommentVote" Width="1.5" PointX="10.875" PointY="7.625" />
+        <AssociationConnector Association="repairmenModel.FK_CommentVote_Comments" />
+        <AssociationConnector Association="repairmenModel.FK_CommentVote_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

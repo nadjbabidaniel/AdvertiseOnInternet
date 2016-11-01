@@ -1,0 +1,971 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="repairmenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ads">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
+          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="CategoryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CityId" Type="uniqueidentifier" />
+          <Property Name="AvgRate" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="VoteCounter" Type="int" />
+          <Property Name="CommentCounter" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="InappCounter" Type="int" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="300" />
+          <Property Name="longitude" Type="nvarchar" MaxLength="20" />
+          <Property Name="latitude" Type="nvarchar" MaxLength="20" />
+          <Property Name="Website" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="PaidDate" Type="date" />
+          <Property Name="ViewCount" Type="int" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="CatName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Approved" Type="bit" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Text" Type="nchar" MaxLength="200" />
+          <Property Name="PositiveVote" Type="int" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AdId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Username" Type="nchar" MaxLength="30" />
+          <Property Name="NegativeVote" Type="int" />
+          <Property Name="Counter" Type="int" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CommentVote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="CommentId" Type="uniqueidentifier" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Vote" Type="bit" />
+        </EntityType>
+        <EntityType Name="InappropriateAds">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="AdId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="InappropriateComments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="CommentId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="RandomS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="RandomString" Type="nvarchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Ratings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AdId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="3" Scale="2" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LoginFlag" Type="nchar" MaxLength="10" />
+          <Property Name="SignupDate" Type="datetime" />
+          <Property Name="Locked" Type="bit" />
+          <Property Name="NotifyEmail" Type="bit" />
+          <Property Name="NotifySMS" Type="bit" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="30" />
+          <Property Name="PasswordChange" Type="bit" />
+        </EntityType>
+        <Association Name="FK_AdUser">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Ads" Type="Self.Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ads">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryAd">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Ads" Type="Self.Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ads">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CityAd">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+          <End Role="Ads" Type="Self.Ads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ads">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Ads">
+          <End Role="Ads" Type="Self.Ads" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ads">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentVote_Comments">
+          <End Role="Comments" Type="Self.Comments" Multiplicity="0..1" />
+          <End Role="CommentVote" Type="Self.CommentVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommentVote">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentVote_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="CommentVote" Type="Self.CommentVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommentVote">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InappropriateAds_Ads">
+          <End Role="Ads" Type="Self.Ads" Multiplicity="1" />
+          <End Role="InappropriateAds" Type="Self.InappropriateAds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ads">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InappropriateAds">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InappropriateAds_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="InappropriateAds" Type="Self.InappropriateAds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InappropriateAds">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InappropriateComments_Comments">
+          <End Role="Comments" Type="Self.Comments" Multiplicity="1" />
+          <End Role="InappropriateComments" Type="Self.InappropriateComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InappropriateComments">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InappropriateComments_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="InappropriateComments" Type="Self.InappropriateComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InappropriateComments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ratings_Ads">
+          <End Role="Ads" Type="Self.Ads" Multiplicity="1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ads">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ratings_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="repairmenModelStoreContainer">
+          <EntitySet Name="Ads" EntityType="Self.Ads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentVote" EntityType="Self.CommentVote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InappropriateAds" EntityType="Self.InappropriateAds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InappropriateComments" EntityType="Self.InappropriateComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RandomS" EntityType="Self.RandomS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AdUser" Association="Self.FK_AdUser">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ads" EntitySet="Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryAd" Association="Self.FK_CategoryAd">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Ads" EntitySet="Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CityAd" Association="Self.FK_CityAd">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Ads" EntitySet="Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Ads" Association="Self.FK_Comments_Ads">
+            <End Role="Ads" EntitySet="Ads" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Users" Association="Self.FK_Comments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentVote_Comments" Association="Self.FK_CommentVote_Comments">
+            <End Role="Comments" EntitySet="Comments" />
+            <End Role="CommentVote" EntitySet="CommentVote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentVote_Users" Association="Self.FK_CommentVote_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CommentVote" EntitySet="CommentVote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InappropriateAds_Ads" Association="Self.FK_InappropriateAds_Ads">
+            <End Role="Ads" EntitySet="Ads" />
+            <End Role="InappropriateAds" EntitySet="InappropriateAds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InappropriateAds_Users" Association="Self.FK_InappropriateAds_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="InappropriateAds" EntitySet="InappropriateAds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InappropriateComments_Comments" Association="Self.FK_InappropriateComments_Comments">
+            <End Role="Comments" EntitySet="Comments" />
+            <End Role="InappropriateComments" EntitySet="InappropriateComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InappropriateComments_Users" Association="Self.FK_InappropriateComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="InappropriateComments" EntitySet="InappropriateComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ratings_Ads" Association="Self.FK_Ratings_Ads">
+            <End Role="Ads" EntitySet="Ads" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ratings_Users" Association="Self.FK_Ratings_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole" Association="Self.FK_UserRole">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="repairmenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityId" Type="Guid" />
+          <Property Name="AvgRate" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="VoteCounter" Type="Int32" />
+          <Property Name="CommentCounter" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_AdUser" FromRole="Ads" ToRole="Users" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_CategoryAd" FromRole="Ads" ToRole="Categories" />
+          <NavigationProperty Name="City" Relationship="Self.FK_CityAd" FromRole="Ads" ToRole="Cities" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Ads" FromRole="Ads" ToRole="Comments" />
+          <NavigationProperty Name="Ratings" Relationship="Self.FK_Ratings_Ads" FromRole="Ads" ToRole="Ratings" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="InappCounter" Type="Int32" />
+          <NavigationProperty Name="InappropriateAds" Relationship="repairmenModel.FK_InappropriateAds_Ads" FromRole="Ad" ToRole="InappropriateAd" />
+          <Property Name="ImagePath" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="longitude" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="latitude" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="PaidDate" Type="DateTime" Precision="0" />
+          <Property Name="ViewCount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="CatName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Approved" Type="Boolean" />
+          <NavigationProperty Name="Ads" Relationship="Self.FK_CategoryAd" FromRole="Categories" ToRole="Ads" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ads" Relationship="Self.FK_CityAd" FromRole="Cities" ToRole="Ads" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Text" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="AdId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Ad" Relationship="Self.FK_Comments_Ads" FromRole="Comments" ToRole="Ads" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Comments_Users" FromRole="Comments" ToRole="Users" />
+          <NavigationProperty Name="InappropriateComments" Relationship="Self.FK_InappropriateComments_Comments" FromRole="Comments" ToRole="InappropriateComments" />
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="PositiveVote" Type="Int32" />
+          <Property Name="NegativeVote" Type="Int32" />
+          <NavigationProperty Name="CommentVotes" Relationship="repairmenModel.FK_CommentVote_Comments" FromRole="Comment" ToRole="CommentVote" />
+          <Property Name="Counter" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="InappropriateComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="CommentId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK_InappropriateComments_Comments" FromRole="InappropriateComments" ToRole="Comments" />
+          <NavigationProperty Name="User" Relationship="Self.FK_InappropriateComments_Users" FromRole="InappropriateComments" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Random">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RandomString" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Precision="3" Scale="2" />
+          <NavigationProperty Name="Ad" Relationship="Self.FK_Ratings_Ads" FromRole="Ratings" ToRole="Ads" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Ratings_Users" FromRole="Ratings" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_UserRole" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="128" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Ads" Relationship="Self.FK_AdUser" FromRole="Users" ToRole="Ads" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Users" FromRole="Users" ToRole="Comments" />
+          <NavigationProperty Name="InappropriateComments" Relationship="Self.FK_InappropriateComments_Users" FromRole="Users" ToRole="InappropriateComments" />
+          <NavigationProperty Name="Ratings" Relationship="Self.FK_Ratings_Users" FromRole="Users" ToRole="Ratings" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_UserRole" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="InappropriateAds" Relationship="repairmenModel.FK_InappropriateAds_Users" FromRole="User" ToRole="InappropriateAd" />
+          <Property Name="LoginFlag" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="CommentVotes" Relationship="repairmenModel.FK_CommentVote_Users" FromRole="User" ToRole="CommentVote" />
+          <Property Name="SignupDate" Type="DateTime" Precision="3" />
+          <Property Name="Locked" Type="Boolean" />
+          <Property Name="NotifyEmail" Type="Boolean" />
+          <Property Name="NotifySMS" Type="Boolean" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordChange" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_AdUser">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Ads" Type="Self.Ad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ads">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryAd">
+          <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+          <End Role="Ads" Type="Self.Ad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ads">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CityAd">
+          <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Ads" Type="Self.Ad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ads">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Ads">
+          <End Role="Ads" Type="Self.Ad" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ads">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ratings_Ads">
+          <End Role="Ads" Type="Self.Ad" Multiplicity="1" />
+          <End Role="Ratings" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ads">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InappropriateComments_Comments">
+          <End Role="Comments" Type="Self.Comment" Multiplicity="1" />
+          <End Role="InappropriateComments" Type="Self.InappropriateComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InappropriateComments">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InappropriateComments_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="InappropriateComments" Type="Self.InappropriateComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InappropriateComments">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ratings_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Ratings" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole">
+          <End Role="Roles" Type="Self.Role" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="repairmenEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ads" EntityType="Self.Ad" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="InappropriateComments" EntityType="Self.InappropriateComment" />
+          <EntitySet Name="RandomS" EntityType="Self.Random" />
+          <EntitySet Name="Ratings" EntityType="Self.Rating" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_AdUser" Association="Self.FK_AdUser">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ads" EntitySet="Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryAd" Association="Self.FK_CategoryAd">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Ads" EntitySet="Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CityAd" Association="Self.FK_CityAd">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Ads" EntitySet="Ads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Ads" Association="Self.FK_Comments_Ads">
+            <End Role="Ads" EntitySet="Ads" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ratings_Ads" Association="Self.FK_Ratings_Ads">
+            <End Role="Ads" EntitySet="Ads" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Users" Association="Self.FK_Comments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InappropriateComments_Comments" Association="Self.FK_InappropriateComments_Comments">
+            <End Role="Comments" EntitySet="Comments" />
+            <End Role="InappropriateComments" EntitySet="InappropriateComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InappropriateComments_Users" Association="Self.FK_InappropriateComments_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="InappropriateComments" EntitySet="InappropriateComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ratings_Users" Association="Self.FK_Ratings_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole" Association="Self.FK_UserRole">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="InappropriateAds" EntityType="repairmenModel.InappropriateAd" />
+          <AssociationSet Name="FK_InappropriateAds_Ads" Association="repairmenModel.FK_InappropriateAds_Ads">
+            <End Role="Ad" EntitySet="Ads" />
+            <End Role="InappropriateAd" EntitySet="InappropriateAds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InappropriateAds_Users" Association="repairmenModel.FK_InappropriateAds_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="InappropriateAd" EntitySet="InappropriateAds" />
+          </AssociationSet>
+          <EntitySet Name="CommentVotes" EntityType="repairmenModel.CommentVote" />
+          <AssociationSet Name="FK_CommentVote_Comments" Association="repairmenModel.FK_CommentVote_Comments">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="CommentVote" EntitySet="CommentVotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentVote_Users" Association="repairmenModel.FK_CommentVote_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="CommentVote" EntitySet="CommentVotes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="InappropriateAd">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="AdId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ad" Relationship="repairmenModel.FK_InappropriateAds_Ads" FromRole="InappropriateAd" ToRole="Ad" />
+          <NavigationProperty Name="User" Relationship="repairmenModel.FK_InappropriateAds_Users" FromRole="InappropriateAd" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_InappropriateAds_Ads">
+          <End Type="repairmenModel.Ad" Role="Ad" Multiplicity="1" />
+          <End Type="repairmenModel.InappropriateAd" Role="InappropriateAd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InappropriateAd">
+              <PropertyRef Name="AdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InappropriateAds_Users">
+          <End Type="repairmenModel.User" Role="User" Multiplicity="1" />
+          <End Type="repairmenModel.InappropriateAd" Role="InappropriateAd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InappropriateAd">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CommentVote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="CommentId" Type="Guid" />
+          <Property Name="Id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vote" Type="Boolean" />
+          <NavigationProperty Name="Comment" Relationship="repairmenModel.FK_CommentVote_Comments" FromRole="CommentVote" ToRole="Comment" />
+          <NavigationProperty Name="User" Relationship="repairmenModel.FK_CommentVote_Users" FromRole="CommentVote" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_CommentVote_Comments">
+          <End Type="repairmenModel.Comment" Role="Comment" Multiplicity="0..1" />
+          <End Type="repairmenModel.CommentVote" Role="CommentVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommentVote">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentVote_Users">
+          <End Type="repairmenModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="repairmenModel.CommentVote" Role="CommentVote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommentVote">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="repairmenModelStoreContainer" CdmEntityContainer="repairmenEntities">
+          <EntitySetMapping Name="Ads">
+            <EntityTypeMapping TypeName="repairmenModel.Ad">
+              <MappingFragment StoreEntitySet="Ads">
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="InappCounter" ColumnName="InappCounter" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="AvgRate" ColumnName="AvgRate" />
+                <ScalarProperty Name="VoteCounter" ColumnName="VoteCounter" />
+                <ScalarProperty Name="CommentCounter" ColumnName="CommentCounter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="repairmenModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="repairmenModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="repairmenModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Counter" ColumnName="Counter" />
+                <ScalarProperty Name="NegativeVote" ColumnName="NegativeVote" />
+                <ScalarProperty Name="PositiveVote" ColumnName="PositiveVote" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AdId" ColumnName="AdId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InappropriateComments">
+            <EntityTypeMapping TypeName="repairmenModel.InappropriateComment">
+              <MappingFragment StoreEntitySet="InappropriateComments">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RandomS">
+            <EntityTypeMapping TypeName="repairmenModel.Random">
+              <MappingFragment StoreEntitySet="RandomS">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="RandomString" ColumnName="RandomString" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="repairmenModel.Rating">
+              <MappingFragment StoreEntitySet="Ratings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AdId" ColumnName="AdId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="repairmenModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="repairmenModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="repairmenModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="PasswordChange" ColumnName="PasswordChange" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="NotifySMS" ColumnName="NotifySMS" />
+                <ScalarProperty Name="NotifyEmail" ColumnName="NotifyEmail" />
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="SignupDate" ColumnName="SignupDate" />
+                <ScalarProperty Name="LoginFlag" ColumnName="LoginFlag" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InappropriateAds">
+            <EntityTypeMapping TypeName="repairmenModel.InappropriateAd">
+              <MappingFragment StoreEntitySet="InappropriateAds">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AdId" ColumnName="AdId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentVotes">
+            <EntityTypeMapping TypeName="repairmenModel.CommentVote">
+              <MappingFragment StoreEntitySet="CommentVote">
+                <ScalarProperty Name="Vote" ColumnName="Vote" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

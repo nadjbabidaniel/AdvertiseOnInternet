@@ -1,0 +1,134 @@
+﻿<widget-error-messages></widget-error-messages>
+<widget-success-messages></widget-success-messages>
+<div class="row">
+    <div id="adminTabs" class="col-xs-12 col-md-10 col-md-offset-1 userPanel" ng-init="initialiseUserPanel()">
+        <ul ng-init="tab = 1" class="col-xs-12">
+            <li ng-class="{active:tab===1}" class="col-xs-12 col-sm-4 col-md-offset-2">
+                <a href ng-click="tab = 1">{{'USER_PANEL.POSTED_ADS'|translate}}</a>
+            </li>
+            <li ng-class="{active:tab===2}" class="col-xs-12 col-sm-4">
+                <a href ng-click="tab = 2">{{'USER_PANEL.PERSONAL_DATA'|translate}}</a>
+            </li>
+        </ul>
+        <div class="border col-xs-12" ng-show="tab === 1">
+            <div ng-repeat="post in posts">
+                <div>
+                    <div class="thumbnail col-sm-12 col-xs-12">
+                        <div class="col-sm-12">
+                            <div class="col-xs-12 col-sm-4 middle-col">
+                                <div>
+                                    <img class="adImg img-responsive" src="{{post.ImagePath}}" alt="img">
+                                </div>
+                                <div class="clear-both"></div>
+                                <hr />
+                                <div>
+                                    <input type="submit" value="{{'CONFIRM_DIALOG.DELETE_OK'|translate}}" class="btn btn-primary" ng-click="deleteAd(post)" />
+                                </div>
+                            </div>
+                            <div class="userData col-xs-12 col-sm-8">
+                                <div class="row">
+                                    <h4>
+                                        <a href="/#/ads/{{post.Id}}" editable-text="post.Name" e-style="color: green" e-required onaftersave="updatePost(post)">{{post.Name  || 'empty' }}</a>
+                                    </h4>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-3">{{'USER_PANEL.CATEGORY'|translate}}:</div><div class="col-xs-12 col-sm-9"><a href="#" editable-select="post.CategoryId" e-style="width:200px" onshow="loadCategory()" onaftersave="updatePost(post)" e-ng-options="g.Id as g.CatName for g in categories">{{ post.CategoryName || 'USER_PANEL.NOT_SET'|translate }}</a></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-3">{{'USER_PANEL.ADDRESS'|translate}}:</div><div class="col-xs-12 col-sm-9"> <label editable-text="post.Location" e-style="color: green" e-required onaftersave="updatePost(post)"> {{post.Location  || 'empty' }} </label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-3">{{'USER_PANEL.CITY'|translate}}:</div><div class="col-xs-12 col-sm-9"><a href="#" editable-select="post.CityId" width="100" onshow="loadCity()" onaftersave="updatePost(post)" e-ng-options="g.Id as g.CityName for g in cities">{{ post.CityName || 'USER_PANEL.NOT_SET'|translate }}</a></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-3">{{'USER_PANEL.PHONE'|translate}}:</div><div class="col-xs-12 col-sm-9"> <label editable-tel="post.PhoneNumber" e-style="color: green" e-required onbeforesave="checkPhone($data)" onaftersave="    updatePost(post)"> {{post.PhoneNumber  || 'empty' }} </label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-3">{{'USER_PANEL.EMAIL'|translate}}:</div><div class="col-xs-12 col-sm-9"> <label editable-text="post.Email" e-style="color: green; width:180px" e-required onbeforesave="checkMail($data)" onaftersave="updatePost(post)"> {{post.Email  || 'empty' }} </label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-3">{{'USER_PANEL.WEBSITE'|translate}}:</div><div class="col-xs-12 col-sm-9"> <label editable-text="post.Website" e-style="color: green" e-required onbeforesave="checkWebsite($data)" onaftersave="    updatePost(post)"> {{post.Website  || 'empty' }} </label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-3">{{'USER_PANEL.DESCRIPTION'|translate}}:</div><div class="col-xs-12 col-sm-9"> <label editable-textarea="post.Description" e-style="color: green" e-required e-rows="4" e-cols="25" onaftersave="updatePost(post)"> {{post.Description  || 'empty' }} </label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="editPhoto col-xs-12 col-sm-12">
+                                        <a href="/#/edit/{{post.Id}}" translate>USER_PANEL.EDIT_PHOTO_MAP</a>
+                                    </div>
+                                </div>
+                                <div ng-show="post.IsPaid===true">{{post.PaidDaysLeft}} {{'USER_PANEL.PROMOTE_PERIOD1'|translate}}{{post.PaidViewsLeft}} {{'USER_PANEL.PROMOTE_PERIOD2'|translate}}</div>
+
+                                <div class="col-xs-12 col-sm-12">
+                                    <input class="btn" id="btn-submit" ng-hide="post.IsPaid===true" type="button" value="{{'USER_PANEL.AD_DISPLAYER'|translate}}" ng-click="prePurchase(post)" />
+                                </div>
+
+
+                                <div style="clear:both" />
+                            </div>
+                            </div>
+                </div>
+            </div>
+                </div>
+        </div>
+        <div class="border col-xs-12" ng-show="tab === 2">
+            <div class="userData col-sm-3 col-md-3 ">
+                <div>
+                    <label for="keyword" translate>USER_PANEL.DISP_NAME</label>
+                </div>            
+                <div>
+                    <a href="#" editable-text="user.displayName" e-style="color: green; max-width:145px" onaftersave="updateUser()">{{user.displayName}}</a>
+                </div>
+                <hr />
+                <div>
+                    <label for="keyword" translate>USER_PANEL.EMAIL</label>
+                </div>
+                <div>
+                    <a href="#" editable-text="user.username" e-style="color: green; max-width:145px" onaftersave="updateUser()">{{user.username}}</a>
+                </div>
+                <hr />
+                <a href="#" editable-checkbox="user.notifyEmail" e-title="{{'USER_PANEL.NOTIFY_EMAIL'|translate}}" e-style="max-width:145px" onaftersave="updateUser()">
+                    {{ user.notifyEmail && 'USER_PANEL.DO_NOTIFY_EMAIL' || 'USER_PANEL.DONT_NOTIFY_EMAIL'|translate }}
+                </a>
+                <hr />
+                <a href="#" editable-checkbox="user.notifySMS" e-title="{{'USER_PANEL.NOTIFY_SMS'|translate}}" e-style="max-width:145px" onaftersave="updateUser()">
+                    {{ user.notifySMS && 'USER_PANEL.DO_NOTIFY_SMS' || 'USER_PANEL.DONT_NOTIFY_SMS'|translate }}
+                </a>
+                <hr />
+                <div>
+                    <label for="keyword" translate>USER_PANEL.PHONE_NUMBER</label>
+                </div>
+                <div>
+                    <a href="#" editable-text="user.phoneNumber" e-style="color: green; max-width:145px" onbeforesave="checkPhone($data)" onaftersave="updateUser()">{{user.phoneNumber}}</a>
+                </div>
+                <hr />
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-9">
+                <form name="updateInformationForm" role="form" class="form-horizontal col-xs-12 col-sm-7 col-sm-offset-2 col-md-5 col-md-offset-4" ng-submit="updateInformationForm.$valid" no-validate>
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="password" translate>USER_PANEL.OLD_PASSWORD</label>
+                            <input type="password" class="form-control" name='old_password' ng-model="OldPassword" placeholder="{{'USER_PANEL.OLD_PASSWORD_PH'|translate}}" required>
+                            <div ng-show="updateInformationForm.old_password.$error.required" translate>USER_PANEL.OLD_PASSWORD_ER_REQ</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" translate>USER_PANEL.NEW_PASSWORD</label>
+                            <input type="password" class="form-control" name='new_password' ng-model='NewPassword' placeholder="{{'USER_PANEL.NEW_PASSWORD_PH'|translate}}" ng-minlength="3" required>
+                            <div ng-show="updateInformationForm.confirm_password.$error.required" translate>USER_PANEL.NEW_PASSWORD_ER_REQ</div>
+                            <div ng-show="updateInformationForm.confirm_password.$error.passwordVerify" translate>USER_PANEL.NEW_PASSWORD_ER_NEQUAL</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" translate>USER_PANEL.CPASSWORD</label>
+                            <input type="password" class="form-control" name='confirm_password' placeholder="{{'USER_PANEL.CPASSWORD_PH'|translate}}" ng-model='ConfirmPassword' ng-minlength="3" required data-password-verify="NewPassword">
+                            <div ng-show="updateInformationForm.confirm_password.$error.required" translate>USER_PANEL.CPASSWORD_ER_REQ</div>
+                            <div ng-show="updateInformationForm.confirm_password.$error.passwordVerify" translate>USER_PANEL.CPASSWORD_ER_NEQUAL</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="{{'USER_PANEL.SUBMIT'|translate}}" class="btn btn-primary pull-right" ng-click="updateUser()" ng-disabled="updateInformationForm.$invalid" />
+                        </div>
+                    </fieldset>
+                </form>
+              </div>
+            </div>
+
+    </div>

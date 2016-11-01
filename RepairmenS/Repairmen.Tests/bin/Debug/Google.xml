@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Google</name>
+    </assembly>
+    <members>
+        <member name="M:Google.PlusButton(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Inserts the code to render a Google+ 'Plus One' button on your page.
+            </summary>
+            <param name="size">The size of the button to be displayed. Choices are "small", "medium", "standard" and "tall".</param>
+            <param name="url">The URL of the page to be plus-one'd. If left blank, this will be the canonical URL of your website (if supplied in meta tags) or the URL of this page</param>
+            <param name="includeCount">True/False variable for whether the total count of plus-ones should be displayed</param>
+            <param name="JSCallback">The name of any custom Javascript Callback function to be called</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

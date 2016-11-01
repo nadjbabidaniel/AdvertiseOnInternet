@@ -1,0 +1,92 @@
+﻿<div ng-init="initialiseAdRegistration()" class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 ">
+        <h1 translate>AD_REGISTRATION.CREATE_AD</h1>
+        <form name="registerForm" role="form" class="form-horizontal" ng-submit="registerForm.$valid && newAd(ad)" no-validate>
+            <fieldset>
+                <div class="form-group registrationForm">
+                    <div class="col-xs-12 col-sm-6">
+                        <div>
+                            <label for="name" translate>AD_REGISTRATION.NAME</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="{{'AD_REGISTRATION.NAME_PH'|translate}}" ng-model="ad.name" required />
+                            <div class="error-container" ng-show="registerForm.name.$dirty && registerForm.name.$invalid">
+                                <p class="error" ng-show="registerForm.name.$error.required" translate>AD_REGISTRATION.NAME_ER_REQ</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="description" translate>AD_REGISTRATION.DESCRIPTION</label>
+                            <textarea name="Description" class="form-control" id="description" placeholder="{{'AD_REGISTRATION.DESCRIPTION'|translate}}" ng-model="ad.description" required />
+                            <div class="error-container" ng-show="registerForm.Description.$dirty && registerForm.Description.$invalid">
+                                <p class="error" ng-show="registerForm.Description.$error.required" translate>AD_REGISTRATION.DESCRIPTION_ER_REQ</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="location" translate>AD_REGISTRATION.ADDRESS</label>
+                            <input type="text" name="Location" class="form-control" id="location" placeholder="{{'AD_REGISTRATION.ADDRESS'|translate}}" ng-model="ad.location" required>
+                            <div class="error-container" ng-show="registerForm.Location.$dirty && registerForm.Location.$invalid">
+                                <p class="error" ng-show="registerForm.Location.$error.required" translate>AD_REGISTRATION.ADDRESS_ER_REQ</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="phoneNumber" translate>AD_REGISTRATION.PHONE</label>
+                            <input valid-phone name="Phone" class="form-control" id="phoneNumber" placeholder="{{'AD_REGISTRATION.PHONE'|translate}}" ng-model="ad.phoneNumber" required>
+                            <div class="error-container" ng-show="registerForm.Phone.$dirty && registerForm.Phone.$invalid">
+                                <p class="error" ng-show="registerForm.Phone.$error.required" translate>AD_REGISTRATION.PHONE_ER_REQ</p>
+                                <p class="error" ng-show="registerForm.Phone.$invalid" translate>AD_REGISTRATION.PHONE_ER_INVALID</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="email" translate>AD_REGISTRATION.EMAIL</label>
+                            <input valid-email name="Email" type="text" class="form-control" id="email" placeholder="{{'AD_REGISTRATION.EMAIL'|translate}}" ng-model="ad.email" required>
+                            <div class="error-container" ng-show="registerForm.Email.$dirty && registerForm.Email.$invalid">
+                                <p class="error" ng-show="registerForm.Email.$error.required" translate>AD_REGISTRATION.EMAIL_ER_REQ</p>
+                                <p class="error" ng-show="registerForm.Email.$invalid" translate>AD_REGISTRATION.EMAIL_ER_INVALID</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="website" translate>AD_REGISTRATION.WEBSITE</label>
+                            <input valid-website name="Website" type="text" class="form-control" id="website" placeholder="{{'AD_REGISTRATION.WEBSITE'|translate}}" ng-model="ad.website">
+                            <div class="error-container" ng-show="registerForm.Website.$dirty && registerForm.Website.$invalid">
+                                <p class="error" ng-show="registerForm.Website.$invalid" translate>AD_REGISTRATION.WEBSITE_ER_FORMAT</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="category" translate>AD_REGISTRATION.CATEGORY</label>
+                            <select class="form-control" name="category" ng-model="ad.category" ng-options="category.CatName for category in categories track by category.Id" required>
+                                <option value="" selected translate>AD_REGISTRATION.CATEGORY_PH</option>
+                            </select>
+                            <div class="error-container" ng-show="registerForm.category.$dirty && registerForm.category.$invalid">
+                                <p class="error" ng-show="registerForm.category.$error.required" translate>AD_REGISTRATION.CATEGORY_ER_REQ</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="city" translate>AD_REGISTRATION.CITY</label>
+                            <select name="city" class="form-control" ng-model="ad.city" ng-options="city.CityName for city in cities track by city.Id" ng-change="reloadMap();" required>
+                                <option value="" selected translate>AD_REGISTRATION.CITY_PH</option>
+                            </select>
+                            <div class="error-container" ng-show="registerForm.city.$dirty && registerForm.city.$invalid">
+                                <p class="error" ng-show="registerForm.city.$error.required" translate>AD_REGISTRATION.CITY_ER_REQ</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label translate="">AD_REGISTRATION.MAP_LOCATION</label>
+                            <div id="googleMap"></div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <h3 translate>AD_REGISTRATION.ADD_IMG</h3>
+                        <div ng-controller="Ctrl">
+                            <div>{{'AD_REGISTRATION.SELECT_IMG'|translate}}<input type="file" id="fileInput" /></div>
+                            <div class="cropArea">
+                                <img-crop image="myImage" result-image="myCroppedImage" area-type="rectangle" area-coords="myAreaCoords" result-image-size="150"></img-crop>
+                            </div>
+                            <div translate>AD_REGISTRATION.CROPPED_IMG</div>
+                            <div class="cropped"><img id="croppedpic" ng-src="{{myCroppedImage}}" /></div>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="{{'AD_REGISTRATION.SUBMIT'|translate}}" class="btn btn-primary" ng-disabled="registerForm.$invalid" /><br /><br />
+            </fieldset>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿<widget-error-messages></widget-error-messages>
+<widget-success-messages></widget-success-messages>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-2 col-md-6 col-md-offset-2">
+        <h2>{{'USER_PANEL.AD_DISPLAYER'|translate}}: {{ad.name}}</h2>
+        <h4>{{'USER_PANEL.PAYPAL_SUBTITLE'|translate}}</h4>
+        <p>{{'USER_PANEL.PAYPAL_DETAILS'|translate}}</p>
+        <p>{{'USER_PANEL.PAYPAL_CALL'|translate}}</p>
+
+        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="custom" value="{{ad.id}}">
+            <input type="hidden" name="hosted_button_id" value="WEZPL9KNEU8V2">
+            <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+    </div>
+</div>
